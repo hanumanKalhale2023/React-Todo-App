@@ -19,14 +19,14 @@ const App = () => {
       setData({ title: "", description: "" }); // Clear the input fields
       toast.success("Task added successfully."); // Show a success toast message
     } else {
-      alert("Please fill in both the title and description fields.");
+      alert("Please fill in both the title and")
     }
   };
   const deleteHandler =async (index) => {
     if(confirm("Are You Sure to delete")){
       const updatedTasks = tasks.filter((_, taskIndex) => taskIndex !== index);
       setTasks(updatedTasks); // Update the tasks state
-      toast.success("Task deleted successfully."); // Show a success toast message
+      alert("Task deleted successfully."); // Show a success
     }
     
     // Filter out the task at the given index
@@ -35,13 +35,13 @@ const App = () => {
   };
 
   return (
-    <div className='flex w-[50%] md:flex flex-col'>
+    <div className='md:flex flex-col'>
       <h1 className='text-zinc-600 font-semibold ml-12 mt-4'>Add Task</h1>
       <input
         type="text"
         name="title"
         value={data.title}
-        className='sm:h-10 md:w-50 md:h-10 md:w-80 ml-12 border-zinc-700'
+        className='h-10 w-80 ml-12 border-zinc-700'
         placeholder='Enter Task Title'
         onChange={handleChange}
       />
@@ -50,7 +50,7 @@ const App = () => {
         type="text"
         name="description"
         value={data.description}
-        className='sm:h-20 sm:w-50 md:h-20 md:w-80 ml-12 border-zinc-700'
+        className='h-20 w-80 ml-12 border-zinc-700'
         placeholder='Enter Task Description'
         onChange={handleChange}
       />
@@ -63,16 +63,16 @@ const App = () => {
       </button>
       <ToastContainer />
 
-      <div className='w-[80%] sm:h-50 sm:w-[88vw]'>
+      <div className='w-[80%]'>
       <h1 className='text-red-500 font-semibold ml-12 mt-4 hover:text-5xl hover:text-red-600'>Your Tasks:</h1>
         {tasks.length > 0 ? (
           
           <ul className='ml-10 mt-4  '>
             {tasks.map((task, index) => (
-              <li key={index} className=' border p-2 mb-2 rounded hover:bg-zinc-200 font-semibold hover:text-xl flex flex-col md:flex-row justify-between'>
+              <li key={index} className='border p-2 mb-2 rounded hover:bg-zinc-200 font-semibold hover:text-xl flex flex-row justify-between'>
               <div >
               <h2 className='font-bold'>{task.title}</h2>
-              <p className='sm:w-50 md:w-80 '>{task.description}</p>
+              <p className='w-80'>{task.description}</p>
               </div>
                <div>
                <button onClick={()=>deleteHandler(index)}> <MdDelete className='text-red-500'/></button>
