@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-
+import { MdDelete } from "react-icons/md";
+import { ToastContainer, toast } from 'react-toastify';
 const App = () => {
   const [data, setData] = useState({
     title: "",
@@ -16,9 +17,20 @@ const App = () => {
     if (data.title && data.description) {
       setTasks([...tasks, data]); // Add the new task to the tasks array
       setData({ title: "", description: "" }); // Clear the input fields
+      toast.success("Task added successfully."); // Show a success toast message
     } else {
-      alert("Please fill in both the title and description.");
+      alert("Please fill in both the title and")
     }
+  };
+  const deleteHandler =async (index) => {
+    if(confirm("Are You Sure to delete")){
+      const updatedTasks = tasks.filter((_, taskIndex) => taskIndex !== index);
+      setTasks(updatedTasks); // Update the tasks state
+    }
+    
+    // Filter out the task at the given index
+  
+    // Show a success toast message
   };
 
   return (
@@ -48,6 +60,7 @@ const App = () => {
       >
         Add Task
       </button>
+      <ToastContainer />
 
       <div className='w-[80%]'>
       <h1 className='text-red-500 font-semibold ml-12 mt-4 hover:text-5xl hover:text-red-600'>Your Tasks:</h1>
@@ -55,12 +68,15 @@ const App = () => {
           
           <ul className='ml-10 mt-4  '>
             {tasks.map((task, index) => (
-              <li key={index} className='border p-2 mb-2 rounded hover:bg-zinc-200 font-semibold hover:text-xl flex flex-col justify-between'>
+              <li key={index} className='border p-2 mb-2 rounded hover:bg-zinc-200 font-semibold hover:text-xl flex flex-row justify-between'>
               <div >
               <h2 className='font-bold'>{task.title}</h2>
               <p className='w-80'>{task.description}</p>
               </div>
-               <div> <button>delete</button></div>
+               <div>
+               <button onClick={()=>deleteHandler(index)}> <MdDelete className='text-red-500'/></button>
+               <ToastContainer/>
+               </div>
 
               </li>
             ))}
