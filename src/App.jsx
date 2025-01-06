@@ -19,7 +19,7 @@ const App = () => {
       setData({ title: "", description: "" }); // Clear the input fields
       toast.success("Task added successfully."); // Show a success toast message
     } else {
-      alert("Please fill in both the title and")
+      alert("Please fill in both the title and description fields.");
     }
   };
   const deleteHandler =async (index) => {
